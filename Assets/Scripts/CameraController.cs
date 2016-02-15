@@ -7,12 +7,5 @@ public class CameraController : MonoBehaviour {
 
 	public void Start(){
 		gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, cameraSpeed);	
-
 	}
-
-	private void Update(){
-
-	}
-
-
 }
