@@ -1,0 +1,17 @@
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/erginbilgin/Downloads/Frogger/obj/Debug/Assembly-CSharp.dll
+/Users/erginbilgin/Downloads/Frogger/obj/Debug/Assembly-CSharp.dll.mdb
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/UnityEngine.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/UnityEditor.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/Mono.Cecil.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/Unity.DataContract.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/erginbilgin/Downloads/Frogger/Temp/bin/Debug/Mono.Cecil.Mdb.dll
