@@ -2,9 +2,11 @@
 using System.Collections;
 using UnityEngine.UI;
 
+
+
 public class FrogController : MonoBehaviour {
 	public const float stepDuration = 0.5f;
-	private Coroutine playerMovement;
+	public Coroutine playerMovement;
 	public Animator animator;
 	public float jumpSizeMultiplier = 1f;
 	public bool isJumping = false;
@@ -14,40 +16,44 @@ public class FrogController : MonoBehaviour {
 	public Text scoreText;
 	public GameObject menuPanel;
 	public static bool isGameActive = true;
-	public bool isSecondPlayer = false;
+	public string frogName = "Kermit";
+
 
 	private void Awake(){
 		audioPlayer = GetComponent<AudioSource>();
 
 	}
 
-	private void Start(){
+	protected virtual void Start(){
 		isGameActive = true;
+
+	}
+
+	public bool IsGameActive(){ return isGameActive; }
+
+	public void MoveUp(){
+		transform.rotation = Quaternion.Euler(0f,0f,0f);
+	    playerMovement = StartCoroutine(Move(Vector2.up * jumpSizeMultiplier));
+	}
+	public void MoveDown(){
+		transform.rotation = Quaternion.Euler(0f,0f,180f);
+	    playerMovement = StartCoroutine(Move(Vector2.down * jumpSizeMultiplier));
+	}
+	public void MoveRight(){
+		transform.rotation = Quaternion.Euler(0f,0f,270f);
+	    playerMovement = StartCoroutine(Move(Vector2.right * jumpSizeMultiplier));
+	}
+	public void MoveLeft(){
+		transform.rotation = Quaternion.Euler(0f,0f,90f);
+	    playerMovement = StartCoroutine(Move(Vector2.left * jumpSizeMultiplier));
 	}
 
 	private void Update()
 	{
-	    if (playerMovement == null & isGameActive)
-	    {
-			if ((!isSecondPlayer & Input.GetKey(KeyCode.W)) | (isSecondPlayer & Input.GetKey(KeyCode.UpArrow))
-				& transform.position.y < Camera.main.transform.position.y + 3.5f){ 
-				transform.rotation = Quaternion.Euler(0f,0f,0f);
-	            playerMovement = StartCoroutine(Move(Vector2.up * jumpSizeMultiplier));
-	            }
-			else if ((!isSecondPlayer & Input.GetKey(KeyCode.S)) | (isSecondPlayer & Input.GetKey(KeyCode.DownArrow))){
-				transform.rotation = Quaternion.Euler(0f,0f,180f);
-	            playerMovement = StartCoroutine(Move(Vector2.down * jumpSizeMultiplier));
-	            }
-			else if ((!isSecondPlayer & Input.GetKey(KeyCode.D)) | (isSecondPlayer & Input.GetKey(KeyCode.RightArrow))){
-				transform.rotation = Quaternion.Euler(0f,0f,270f);
-	            playerMovement = StartCoroutine(Move(Vector2.right * jumpSizeMultiplier));
-	            }
-			else if ((!isSecondPlayer & Input.GetKey(KeyCode.A)) | (isSecondPlayer & Input.GetKey(KeyCode.LeftArrow))){
-				transform.rotation = Quaternion.Euler(0f,0f,90f);
-	            playerMovement = StartCoroutine(Move(Vector2.left * jumpSizeMultiplier));
-	            }
-	    }
+	    
 	}
+
+
 
 	private IEnumerator Move(Vector2 direction){
 	    Vector2 startPosition = transform.position;
@@ -55,7 +61,7 @@ public class FrogController : MonoBehaviour {
 	    float t = 0.0f;
 		animator.SetTrigger("Jump");
 		isJumping = true;
-		GetComponent<WaterHelper>().isJumping = true;
+		GetComponent<FrogController>().isJumping = true;
 		audioPlayer.PlayOneShot(jumpSound, 1F);
 	    while (t < 1.0f)
 	    {
@@ -67,7 +73,7 @@ public class FrogController : MonoBehaviour {
 	    transform.position = destinationPosition;
 	    playerMovement = null;
 	    isJumping = false;
-		GetComponent<WaterHelper>().isJumping = false;
+		GetComponent<FrogController>().isJumping = false;
 	    playerScore++;
 	    scoreText.text = playerScore.ToString();
 

@@ -7,7 +7,7 @@ public class Water : MonoBehaviour {
         // Frog?
         if (coll.tag == "Player")
             // Not Jumping?
-			if (!coll.GetComponent<WaterHelper>().isJumping)
+			if (!coll.GetComponent<FrogController>().isJumping)
                 // Not on a platform?
                 if (coll.transform.parent == null)
                     // HANDLE GAME OVER HERE
