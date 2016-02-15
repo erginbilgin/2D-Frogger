@@ -35,9 +35,6 @@ public class FrogController : MonoBehaviour {
 
 	private void Update()
 	{	
-//		Vector3 tmpPos = transform.position;
-//		tmpPos.y = Mathf.Clamp(tmpPos.y, -10.0f, Camera.main.transform.position.y + 4.5f);
-//		transform.position = tmpPos;
 	    if (playerMovement == null)
 	    {
 	        if (Input.GetKey(KeyCode.W) & transform.position.y < Camera.main.transform.position.y + 3.5f){ 
