@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿using UnityEngine;using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -12,44 +12,37 @@ public class FrogController : MonoBehaviour {
 	private AudioSource audioPlayer;
 	public int playerScore = 0; 
 	public Text scoreText;
-	public Text highScoreText;
-	public Text scoreOnPanel;
 	public GameObject menuPanel;
-
-
-	public int GetHighScore(){
-		if(!PlayerPrefs.HasKey("Score")){
-			PlayerPrefs.SetInt("Score",0);
-    	}
-    return PlayerPrefs.GetInt("Score");
-    }
-     
- 	public void SetHighScore(int value){
-    	PlayerPrefs.SetInt("Score",value);
-    }
+	public static bool isGameActive = true;
+	public bool isSecondPlayer = false;
 
 	private void Awake(){
 		audioPlayer = GetComponent<AudioSource>();
 
 	}
 
+	private void Start(){
+		isGameActive = true;
+	}
+
 	private void Update()
-	{	
-	    if (playerMovement == null)
+	{
+	    if (playerMovement == null & isGameActive)
 	    {
-	        if (Input.GetKey(KeyCode.W) & transform.position.y < Camera.main.transform.position.y + 3.5f){ 
+			if ((!isSecondPlayer & Input.GetKey(KeyCode.W)) | (isSecondPlayer & Input.GetKey(KeyCode.UpArrow))
+				& transform.position.y < Camera.main.transform.position.y + 3.5f){ 
 				transform.rotation = Quaternion.Euler(0f,0f,0f);
 	            playerMovement = StartCoroutine(Move(Vector2.up * jumpSizeMultiplier));
 	            }
-	        else if (Input.GetKey(KeyCode.S)){
+			else if ((!isSecondPlayer & Input.GetKey(KeyCode.S)) | (isSecondPlayer & Input.GetKey(KeyCode.DownArrow))){
 				transform.rotation = Quaternion.Euler(0f,0f,180f);
 	            playerMovement = StartCoroutine(Move(Vector2.down * jumpSizeMultiplier));
 	            }
-	        else if (Input.GetKey(KeyCode.D)){
+			else if ((!isSecondPlayer & Input.GetKey(KeyCode.D)) | (isSecondPlayer & Input.GetKey(KeyCode.RightArrow))){
 				transform.rotation = Quaternion.Euler(0f,0f,270f);
 	            playerMovement = StartCoroutine(Move(Vector2.right * jumpSizeMultiplier));
 	            }
-	        else if (Input.GetKey(KeyCode.A)){
+			else if ((!isSecondPlayer & Input.GetKey(KeyCode.A)) | (isSecondPlayer & Input.GetKey(KeyCode.LeftArrow))){
 				transform.rotation = Quaternion.Euler(0f,0f,90f);
 	            playerMovement = StartCoroutine(Move(Vector2.left * jumpSizeMultiplier));
 	            }
@@ -86,13 +79,10 @@ public class FrogController : MonoBehaviour {
 	}
 
 
-	void OnDestroy(){
-		if (playerScore > GetHighScore()){
-	    	SetHighScore(playerScore);
-	    }
-	    scoreOnPanel.text = playerScore.ToString();
-		highScoreText.text = GetHighScore().ToString();
-		menuPanel.SetActive(true);	
+	protected virtual void OnDestroy(){
+		menuPanel.SetActive(true);
+		isGameActive = false;	
 	}
 
 }
+
